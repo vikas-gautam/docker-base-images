@@ -1,0 +1,12 @@
+version: "3.4"
+services:
+  php:
+    ports:
+    - 80:80
+  db:
+    ports:
+    - 3306:3306
+  mailhog:
+    ports:
+    - 1025:1025
+    - 8025:8025

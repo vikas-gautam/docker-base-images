@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  php:
+    build:
+      context: .
+    environment:
+      COMPOSER_MEMORY_LIMIT: -1
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/var/www:delegated
+      - ~/.ssh:/root/.ssh
+      - ./docker-utils/nginx/conf.d/app-local.conf:/etc/nginx/conf.d/app.conf
+      - ./docker-utils/php/conf.d/xdebug-disabled.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+  db:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: example
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: changeme
+    volumes:
+      - db-data:/var/lib/mysql
+  redis:
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+  mailhog:
+    image: mailhog/mailhog
+  node:
+    image: rajivnix/nodejs:8.11.3
+    command: tail -f /dev/null
+    volumes:
+      - .:/var/www:delegated
+    working_dir: /var/www
+volumes:
+  db-data: {}
+  redis-data: {}
