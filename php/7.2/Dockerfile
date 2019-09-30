@@ -1,4 +1,4 @@
-FROM rajivnix/debian8-base:latest
+FROM vikas93/debian8-base
 #
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "update.sh"
 #
@@ -189,6 +189,7 @@ RUN set -eux; \
 	\
 # https://github.com/docker-library/php/issues/692 (copy default example "php.ini" files somewhere easily discoverable)
 	cp -v php.ini-* "$PHP_INI_DIR/"; \
+
 	\
 	cd /; \
 	docker-php-source delete; \
