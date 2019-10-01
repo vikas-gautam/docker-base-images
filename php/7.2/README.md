@@ -7,8 +7,8 @@ Any changes made to the Dockerfile of this image needs a new image to be built a
 pushed to docker registry(ECR). This process would be done via an CI/CD in future.
 
 ```
-docker build -t rajivnix/php:7.1.19 .
-docker push rajivnix/php:7.1.19
+docker build -t vikas93/php:7.2 .
+docker push vikas93/php:7.2
 ```
 
 # Configuring your application containers
@@ -17,7 +17,7 @@ in docker-compose.yml file
 
 ```
 mynodecontainer:
-    source: rajivnix/php:7.1.19
+    source: vikas93/php:7.2
     environment:
     ...
 ```
